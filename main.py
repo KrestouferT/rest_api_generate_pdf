@@ -6,7 +6,11 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
+@app.get("/")
+def home():
+    return {"Hello": "World"}
+
+
 @app.get("/generate_cancellation_pdf")
 async def generate_cancellation(vorname, nachname, strasse, plz, stadt, rufnummer):
     return FileResponse(generate_pdf(vorname, nachname, strasse, plz, stadt, rufnummer), media_type="application/pdf")
-
